@@ -1,59 +1,60 @@
-# Angular191
+# HMR bug reproduction
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.2.
+This is a minimal reproduction project for a HMR bug with Angular in version 19.1, with a .browserslistrc file
 
-## Development server
+When compiling, I have these warnings :
 
-To start a local development server, run:
+```
+▲ [WARNING] "import.meta" is not available in the configured target environment ("chrome109.0", "edge131.0", "firefox115.0", "ios11.0", "opera114.0", "safari16.6" + 5 overrides) and will be empty [empty-import-meta]
 
-```bash
-ng serve
+    src/app/app.component.ts:13:99:
+      13 │ ... + encodeURIComponent(t), import.meta.url).href).then(m => m.de...
+         ╵                              ~~~~~~~~~~~
+
+
+▲ [WARNING] "import.meta" is not available in the configured target environment ("chrome109.0", "edge131.0", "firefox115.0", "ios11.0", "opera114.0", "safari16.6" + 5 overrides) and will be empty [empty-import-meta]
+
+    src/app/app.component.ts:13:361:
+      13 │ ...efined" || ngDevMode) && (import.meta.hot && import.meta.hot.on...
+         ╵                              ~~~~~~~~~~~
+
+
+▲ [WARNING] "import.meta" is not available in the configured target environment ("chrome109.0", "edge131.0", "firefox115.0", "ios11.0", "opera114.0", "safari16.6" + 5 overrides) and will be empty [empty-import-meta]
+
+    src/app/app.component.ts:13:380:
+      13 │ ...e) && (import.meta.hot && import.meta.hot.on("angular:component...
+         ╵                              ~~~~~~~~~~~
+
+
+▲ [WARNING] "import.meta" is not available in the configured target environment ("chrome109.0", "edge131.0", "firefox115.0", "ios11.0", "opera114.0", "safari16.6" + 5 overrides) and will be empty [empty-import-meta]
+
+    src/app/empty/empty.component.ts:11:114:
+      11 │ ... + encodeURIComponent(t), import.meta.url).href).then(m => m.de...
+         ╵                              ~~~~~~~~~~~
+
+
+▲ [WARNING] "import.meta" is not available in the configured target environment ("chrome109.0", "edge131.0", "firefox115.0", "ios11.0", "opera114.0", "safari16.6" + 5 overrides) and will be empty [empty-import-meta]
+
+    src/app/empty/empty.component.ts:11:369:
+      11 │ ...efined" || ngDevMode) && (import.meta.hot && import.meta.hot.on...
+         ╵                              ~~~~~~~~~~~
+
+
+▲ [WARNING] "import.meta" is not available in the configured target environment ("chrome109.0", "edge131.0", "firefox115.0", "ios11.0", "opera114.0", "safari16.6" + 5 overrides) and will be empty [empty-import-meta]
+
+    src/app/empty/empty.component.ts:11:388:
+      11 │ ...e) && (import.meta.hot && import.meta.hot.on("angular:component...
+         ╵                              ~~~~~~~~~~~
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+When load the app with Firefox or Chrome, I have this fatal error 
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+Uncaught TypeError: URL constructor: /@ng/component?c=src%2Fapp%2Fempty%2Fempty.component.ts%40C7zEmptyComponent&t=1737229993392 is not a valid URL. main.js:39:27
+    C7zEmptyComponent_HmrLoad main.js:39
+    <anonymous> empty.component.ts:7
+    <anonymous> empty.component.ts:7
+    C7zEmptyComponent_HmrLoad main.js:39
+    <anonymous> empty.component.ts:7
+    <anonymous> empty.component.ts:7
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
