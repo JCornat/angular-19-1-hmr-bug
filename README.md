@@ -1,7 +1,7 @@
 # Edit
 
-This issue is caused becauses browsers in `.browserslistrc` file are not supported.  
-I fixed the issue with environment configuration (https://github.com/browserslist/browserslist?tab=readme-ov-file#configuring-for-different-environments) :  
+This issue is caused because `.browserslistrc` config add browsers that are not supported anymore by Angular.  
+I fixed the issue with environment configuration (https://github.com/browserslist/browserslist?tab=readme-ov-file#configuring-for-different-environments), that way I can work with HMR enabled while developing and keep a wider support when build the app  
 
 ```
 [production]
