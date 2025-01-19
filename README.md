@@ -1,6 +1,44 @@
+# Edit
+
+This issue is caused becauses browsers in `.browserslistrc` file are not supported.  
+I fixed the issue with environment configuration (https://github.com/browserslist/browserslist?tab=readme-ov-file#configuring-for-different-environments) :  
+
+```
+[production]
+> 0.2% and not dead
+
+[development]
+last 2 Chrome versions
+last 1 Firefox version
+last 2 Edge major versions
+last 2 Safari major versions
+last 2 iOS major versions
+last 2 Android major versions
+Firefox ESR
+```
+
+And in `package.json`, before launching `ng serve`, I set an environment variable :
+
+Before :
+
+```
+"scripts": {
+   "start": "ng serve",
+}
+```
+
+After :
+
+```
+"scripts": {
+   "start": "BROWSERSLIST_ENV=development ng serve",
+}
+```
+
+
 # HMR bug reproduction
 
-This is a minimal reproduction project for a HMR bug with Angular in version 19.1, with a .browserslistrc file
+This is a minimal reproduction project for a HMR bug with Angular in version 19.1, with a `.browserslistrc` file
 
 When compiling, I have these warnings :
 
